@@ -10,5 +10,44 @@
       "id": "eJqNqed2XZRc54CTo6R7s"
     }
   ],
-  "recipes": []
+  "recipes": [
+    {
+      "name": "poop",
+      "notes": "do not eat",
+      "ingredients": [
+        {
+          "name": "poop",
+          "amount": {
+            "unit": "log",
+            "quantity": 1
+          }
+        }
+      ],
+      "instructions": [
+        "poop"
+      ],
+      "authorId": "eJqNqed2XZRc54CTo6R7s",
+      "createdAt": 1604187605455,
+      "id": "V90LA-RqumR-ocQikUVl4"
+    },
+    {
+      "name": "shit",
+      "notes": "do not eat",
+      "ingredients": [
+        {
+          "name": "poop",
+          "amount": {
+            "unit": "log",
+            "quantity": 1
+          }
+        }
+      ],
+      "instructions": [
+        "poop"
+      ],
+      "authorId": "eJqNqed2XZRc54CTo6R7s",
+      "createdAt": 1604187623971,
+      "id": "iWZWVw7hN2u09YaPiju49"
+    }
+  ]
 }

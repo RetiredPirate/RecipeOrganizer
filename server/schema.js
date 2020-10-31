@@ -1,6 +1,8 @@
 const { gql } = require("apollo-server")
 
 const typeDefs = gql`
+  directive @authenticated on FIELD_DEFINITION
+
   type Recipe {
     id: ID!
     name: String!
@@ -71,13 +73,13 @@ const typeDefs = gql`
   }
 
   type Query {
-    user: User!
+    user: User! @authenticated
   }
 
   type Mutation {
     signup(signup: SignupInput!): SessionInfo!
     signin(credentials: CredentialsInput!): SessionInfo!
-    newRecipe(recipe: NewRecipeInput!): Recipe!
+    newRecipe(recipe: NewRecipeInput!): Recipe! @authenticated
   }
 `
 

@@ -2,9 +2,6 @@ const { nanoid: nano } = require("nanoid")
 module.exports = {
   Query: {
     user: (_, __, { user, models }) => {
-      if (!user) {
-        throw new Error("no auth")
-      }
       console.log(models.User.findOne({ id: user.id }))
       return models.User.findOne({ id: user.id })
     },
@@ -39,6 +36,19 @@ module.exports = {
 
       const token = createToken(user.id)
       return { user, token }
+    },
+    newRecipe(_, newRecipe, { models, user }) {
+      const recipe = models.Recipe.createOne({
+        ...newRecipe.recipe,
+        authorId: user.id,
+      })
+      return recipe
+    },
+  },
+  User: {
+    recipes(root, _, { user, models }) {
+      console.log(models.Recipe.findMany({ authorId: root.id }))
+      return models.Recipe.findMany({ authorId: root.id })
     },
   },
 }
