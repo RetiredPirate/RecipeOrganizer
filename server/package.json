@@ -1,0 +1,29 @@
+{
+  "name": "recipe-organizer",
+  "version": "1.0.0",
+  "description": "Organizes Recipes (duh)",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js --ignore 'db/db.json'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RetiredPirate/RecipeOrganizer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RetiredPirate/RecipeOrganizer/issues"
+  },
+  "homepage": "https://github.com/RetiredPirate/RecipeOrganizer#readme",
+  "dependencies": {
+    "apollo-server": "^2.19.0",
+    "jsonwebtoken": "^8.5.1",
+    "lowdb": "^1.0.0",
+    "nanoid": "^3.1.16"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
