@@ -2,24 +2,12 @@
   "ingredients": [],
   "users": [
     {
-      "credentials": {
-        "email": "bob@bob.bob",
-        "password": "asdf"
-      },
+      "email": "crap.bob",
+      "password": "asdf",
       "firstName": "bob",
       "lastName": "bob",
-      "createdAt": 1604183617896,
-      "id": "kDoJqTYtI8NYAcJF3tFKJ"
-    },
-    {
-      "credentials": {
-        "email": "crap.bob",
-        "password": "asdf"
-      },
-      "firstName": "bob",
-      "lastName": "bob",
-      "createdAt": 1604184094024,
-      "id": "4SEIyqC6yBcAbvEfKtTj1"
+      "createdAt": 1604185642076,
+      "id": "eJqNqed2XZRc54CTo6R7s"
     }
   ],
   "recipes": []

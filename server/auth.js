@@ -18,8 +18,8 @@ const createToken = id => jwt.sign(id, secret)
  */
 const getUserFromToken = token => {
   try {
-    const user = jwt.verify(token, secret)
-    return models.User.findOne({ id: user.id })
+    const id = jwt.verify(token, secret)
+    return models.User.findOne({ id })
   } catch (e) {
     return null
   }
