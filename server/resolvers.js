@@ -1,10 +1,16 @@
+const { ForbiddenError } = require("apollo-server")
+
 module.exports = {
   Query: {
     user: (_, __, { user, models }) => {
       return models.User.findOne({ id: user.id })
     },
-    recipe: (_, { id }, { models }) => {
-      return models.Recipe.findOne({ id: id })
+    recipe: (_, { id }, { user, models }) => {
+      const recipe = models.Recipe.findOne({ id: id })
+      if (recipe.authorId !== user.id) {
+        throw new ForbiddenError("not authorized to access this recipe")
+      }
+      return recipe
     }
   },
   Mutation: {

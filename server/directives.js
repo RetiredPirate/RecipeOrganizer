@@ -1,7 +1,6 @@
 const {
   SchemaDirectiveVisitor,
   AuthenticationError,
-  ForbiddenError,
 } = require("apollo-server")
 const { defaultFieldResolver } = require("graphql")
 

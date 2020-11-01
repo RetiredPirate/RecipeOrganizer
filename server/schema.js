@@ -74,7 +74,7 @@ const typeDefs = gql`
 
   type Query {
     user: User! @authenticated
-    recipe(id: ID!): Recipe!
+    recipe(id: ID!): Recipe! @authenticated
   }
 
   type Mutation {
