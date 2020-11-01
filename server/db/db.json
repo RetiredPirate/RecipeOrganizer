@@ -8,6 +8,14 @@
       "lastName": "bob",
       "createdAt": 1604185642076,
       "id": "eJqNqed2XZRc54CTo6R7s"
+    },
+    {
+      "email": "crap.bill",
+      "password": "asdf",
+      "firstName": "bill",
+      "lastName": "clinton",
+      "createdAt": 1604254620656,
+      "id": "H_hSIWv9PnkGfMB6JdtKt"
     }
   ],
   "recipes": [
