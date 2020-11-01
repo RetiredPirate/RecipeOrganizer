@@ -1,4 +1,3 @@
-const { nanoid: nano } = require("nanoid")
 module.exports = {
   Query: {
     user: (_, __, { user, models }) => {
