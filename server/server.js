@@ -2,7 +2,7 @@ const { ApolloServer } = require("apollo-server")
 const typeDefs = require("./schema")
 const resolvers = require("./resolvers")
 const { createToken, getUserFromToken } = require("./auth")
-const db = require("./db")
+const db = require("./mdb")
 const { AuthenticatedDirective } = require("./directives")
 
 const server = new ApolloServer({
@@ -11,10 +11,10 @@ const server = new ApolloServer({
   schemaDirectives: {
     authenticated: AuthenticatedDirective,
   },
-  context({ req }) {
+  async context({ req }) {
     const context = { ...db }
     const token = req.headers.authorization
-    const user = getUserFromToken(token)
+    const user = await getUserFromToken(token)
     return { ...context, user, createToken }
   },
 })

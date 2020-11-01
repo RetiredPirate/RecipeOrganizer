@@ -16,6 +16,14 @@
       "lastName": "clinton",
       "createdAt": 1604254620656,
       "id": "H_hSIWv9PnkGfMB6JdtKt"
+    },
+    {
+      "email": "crop.bab",
+      "password": "asdf",
+      "firstName": "bob",
+      "lastName": "bob",
+      "createdAt": 1604267093756,
+      "id": "eWmq7ypGeUMFoZi6XO0Vw"
     }
   ],
   "recipes": [
