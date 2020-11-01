@@ -19,6 +19,7 @@ const userSchema = new mongoose.Schema({
 const recipeSchema = new mongoose.Schema({
   name: String,
   notes: String,
+  authorId: String,
   instructions: [String],
   ingredients: [
     {

@@ -1,51 +1,65 @@
 const { ForbiddenError } = require("apollo-server")
+const bcrypt = require("bcrypt")
+
+const SALT_ROUNDS = 10
 
 module.exports = {
   Query: {
-    user: (_, __, { user, models }) => {
-      return models.User.findOne({ id: user.id })
+    user: async (_, __, { user, models }) => {
+      return await models.User.findById(user.id)
     },
-    recipe: (_, { id }, { user, models }) => {
-      const recipe = models.Recipe.findOne({ id: id })
+    recipe: async (_, { id }, { user, models }) => {
+      const recipe = await models.Recipe.findById(id)
       if (recipe.authorId !== user.id) {
         throw new ForbiddenError("not authorized to access this recipe")
       }
       return recipe
-    }
+    },
   },
   Mutation: {
-    signup: (_, { signup }, { models, createToken }) => {
-      const existing = models.User.findOne({
+    signup: async (_, { signup }, { models, createToken }) => {
+      const existing = await models.User.findOne({
         email: signup.credentials.email,
       })
 
       if (existing) {
-        throw new Error("nope")
+        throw new ForbiddenError("The specified email already exists.")
       }
-      const user = models.User.createOne({
+
+      const passwordHash = await bcrypt.hash(
+        signup.credentials.password,
+        SALT_ROUNDS
+      )
+
+      const user = await models.User.create({
         email: signup.credentials.email,
-        password: signup.credentials.password,
+        passwordHash,
         firstName: signup.firstName,
         lastName: signup.lastName,
       })
+
       const token = createToken(user.id)
       return { user, token }
     },
-    signin(_, { credentials }, { models, createToken }) {
-      const user = models.User.findOne({
-        email: credentials.email,
-        password: credentials.password,
-      })
+    signin: async (_, { credentials }, { models, createToken }) => {
+      const user = await models.User.findOne({ email: credentials.email })
 
-      if (!user) {
-        throw new Error("nope")
+      const isPasswordCorrect = await bcrypt.compare(
+        credentials.password,
+        user.passwordHash
+      )
+
+      if (!isPasswordCorrect) {
+        throw new ForbiddenError("Email and password not recognised.")
       }
 
       const token = createToken(user.id)
       return { user, token }
     },
-    newRecipe(_, newRecipe, { models, user }) {
-      const recipe = models.Recipe.createOne({
+    newRecipe: async (_, newRecipe, { models, user }) => {
+      console.log(user.id)
+
+      const recipe = await models.Recipe.create({
         ...newRecipe.recipe,
         authorId: user.id,
       })
@@ -53,8 +67,8 @@ module.exports = {
     },
   },
   User: {
-    recipes(root, _, { user, models }) {
-      return models.Recipe.findMany({ authorId: root.id })
+    recipes: async (root, _, { user, models }) => {
+      return await models.Recipe.find({ authorId: root.id })
     },
   },
 }

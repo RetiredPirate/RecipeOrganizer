@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken")
-const { models } = require("./db")
+const { models } = require("./mdb")
 const secret = "catpack"
 const { AuthenticationError, ForbiddenError } = require("apollo-server")
 
@@ -16,10 +16,11 @@ const createToken = id => jwt.sign(id, secret)
  * a null user
  * @param {String} token jwt from client
  */
-const getUserFromToken = token => {
+const getUserFromToken = async token => {
   try {
     const id = jwt.verify(token, secret)
-    return models.User.findOne({ id })
+    const user = await models.User.findById(id)
+    return user
   } catch (e) {
     return null
   }
