@@ -1,9 +1,11 @@
 module.exports = {
   Query: {
     user: (_, __, { user, models }) => {
-      console.log(models.User.findOne({ id: user.id }))
       return models.User.findOne({ id: user.id })
     },
+    recipe: (_, { id }, { models }) => {
+      return models.Recipe.findOne({ id: id })
+    }
   },
   Mutation: {
     signup: (_, { signup }, { models, createToken }) => {
@@ -46,7 +48,6 @@ module.exports = {
   },
   User: {
     recipes(root, _, { user, models }) {
-      console.log(models.Recipe.findMany({ authorId: root.id }))
       return models.Recipe.findMany({ authorId: root.id })
     },
   },
