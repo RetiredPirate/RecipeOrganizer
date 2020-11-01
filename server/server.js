@@ -2,7 +2,7 @@ const { ApolloServer } = require("apollo-server")
 const typeDefs = require("./schema")
 const resolvers = require("./resolvers")
 const { createToken, getUserFromToken } = require("./auth")
-const db = require("./mdb")
+const db = require("./db")
 const { AuthenticatedDirective } = require("./directives")
 
 const server = new ApolloServer({
