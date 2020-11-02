@@ -1,8 +1,9 @@
 const mongoose = require("mongoose")
 const Recipe = require('./Recipe')
 const User = require('./User')
+const config = require('../../config')
 
-mongoose.connect("mongodb://localhost/recipeorganizer", {
+mongoose.connect(config.DBHost, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
